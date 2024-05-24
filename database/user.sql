@@ -5,4 +5,4 @@ insert into user values(null, '관리자', 'admin@mysite.com', password('1234'),
 
 -- test
 select * from user;
-select * from guestbook;
+select * from guestbook; 
