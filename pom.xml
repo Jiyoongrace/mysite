@@ -12,6 +12,10 @@
         <module>mysite2</module>
     </modules>
 
+    <properties>
+        <tomcat.deploy.url>http://192.168.0.195/manager/text</tomcat.deploy.url>
+    </properties>
+
     <build>
         <finalName>mysite2</finalName>
         <plugins>
@@ -20,8 +24,7 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <!--suppress UnresolvedMavenProperty -->
-                    <url>${tomcat.deploy.url}</url>
+                    <url></url>
                     <server>tomcat-poscodx</server>
                 </configuration>
             </plugin>

@@ -34,7 +34,7 @@ public class UserServlet extends HttpServlet {
             vo.setGender(gender);
 
             System.out.println(vo);
-           //  new UserDao().insert(vo);
+            new UserDao().insert(vo);
 
             resp.sendRedirect(req.getContextPath() + "/user?a=joinsuccess");
 
