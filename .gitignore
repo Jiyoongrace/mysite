@@ -18,7 +18,7 @@ out/
 mvnw
 mvnw.cmd
 .mvn/
-web/WEB-INF/
+web/
 
 ### Eclipse ###
 .apt_generated
