@@ -1,54 +1,28 @@
 package com.poscodx.mysite.controller;
 
-import com.poscodx.mysite.dao.UserDao;
-import com.poscodx.mysite.vo.UserVo;
+import com.poscodx.mysite.controller.action.main.MainAction;
+import com.poscodx.mysite.controller.action.user.*;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import java.io.Serial;
+import java.util.Map;
 
-public class UserServlet extends HttpServlet {
+public class UserServlet extends ActionServlet {
+    @Serial
     private static final long serialVersionUID = 1L;
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
-        String action = req.getParameter("a");
-
-        if("joinform".equals(action)) {
-            req.getRequestDispatcher("/WEB-INF/views/user/joinform.jsp")
-                    .forward(req, resp);
-
-        } else if("join".equals(action)) {
-            String name = req.getParameter("name");
-            String email = req.getParameter("email");
-            String password = req.getParameter("password");
-            String gender = req.getParameter("gender");
-
-            UserVo vo = new UserVo();
-            vo.setName(name);
-            vo.setEmail(email);
-            vo.setPassword(password);
-            vo.setGender(gender);
-
-            System.out.println(vo);
-            new UserDao().insert(vo);
-
-            resp.sendRedirect(req.getContextPath() + "/user?a=joinsuccess");
-
-        } else if("joinsuccess".equals(action)) {
-            req.getRequestDispatcher("/WEB-INF/views/user/joinsuccess.jsp")
-                    .forward(req, resp);
-        } else {
-            resp.sendRedirect(req.getContextPath());
-        }
-
-    }
+    private Map<String, Action> mapAction = Map.of(
+            "joinform", new JoinFormAction(),
+            "join", new JoinAction(),
+            "joinsuccess", new JoinSuccess(),
+            "loginform", new LoginFormAction(),
+            "login", new LoginAction(),
+            "logout", new LogoutAction(),
+            "updateform", new UpdateFormAction(),
+            "update", new UpdateAction()
+    );
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req, resp);
+    protected Action getAction(String actionName) {
+        return mapAction.getOrDefault(actionName, new MainAction());
     }
 }
