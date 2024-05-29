@@ -14,29 +14,31 @@ public class UpdateAction implements Action {
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
+
+        // Access Control
         if(session == null) {
-            resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            resp.sendRedirect(req.getContextPath());
             return;
         }
         UserVo authUser = (UserVo) session.getAttribute("authUser");
         if(authUser == null) {
-            resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            resp.sendRedirect(req.getContextPath());
             return;
         }
 
-        Long no = authUser.getNo();
         String name = req.getParameter("name");
         String password = req.getParameter("password");
         String gender = req.getParameter("gender");
 
-        new UserDao().updateUserNamePassword(name, password, gender, no);
-        if(session != null) {
-            session.removeAttribute("authUser");
-        }
-        authUser.setNo(no);
-        authUser.setName(name);
-        session.setAttribute("authUser", authUser);
+        UserVo vo = new UserVo();
+        vo.setNo(authUser.getNo());
+        vo.setName(name);
+        vo.setPassword(password);
+        vo.setGender(gender);
 
-        resp.sendRedirect(req.getContextPath());
+        new UserDao().update(vo);
+        authUser.setName(name);
+
+        resp.sendRedirect(req.getContextPath() + "/user?a=updateform&result=success");
     }
 }

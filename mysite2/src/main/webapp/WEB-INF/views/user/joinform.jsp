@@ -16,7 +16,7 @@
 		<div id="user">
 
 			<form id="join-form" name="joinForm" method="post" action="${pageContext.request.contextPath}/user">
-				<input type="hidden" name="a" value="join" />
+				<input type='hidden' name="a" value="join">
 				<label class="block-label" for="name">이름</label>
 				<input id="name" name="name" type="text" value="">
 
@@ -40,7 +40,6 @@
 				</fieldset>
 
 				<input type="submit" value="가입하기">
-
 			</form>
 		</div>
 	</div>
