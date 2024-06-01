@@ -874,7 +874,7 @@ jQuery.ready.promise = function( obj ) {
 		// we once tried to use readyState "interactive" here, but it caused issues like the one
 		// discovered by ChrisS here: http://bugs.jquery.com/ticket/12282#comment:15
 		if ( document.readyState === "complete" ) {
-			// Handle it asynchronously to allow scripts the opportunity to delay ready
+			// Handle it asynchrorderNously to allow scripts the opportunity to delay ready
 			setTimeout( jQuery.ready );
 
 		// Standards-based browsers support DOMContentLoaded
@@ -2511,7 +2511,7 @@ if ( !getSetInput || !getSetAttribute ) {
 			var ret = elem.getAttributeNode( name );
 			return jQuery.nodeName( elem, "input" ) ?
 
-				// Ignore the value *property* by using defaultValue
+				// IgroupNore the value *property* by using defaultValue
 				elem.defaultValue :
 
 				ret && ret.specified ? ret.value : undefined;
@@ -3248,9 +3248,9 @@ jQuery.event = {
 	},
 
 	simulate: function( type, elem, event, bubble ) {
-		// Piggyback on a donor event to simulate a different one.
-		// Fake originalEvent to avoid donor's stopPropagation, but if the
-		// simulated event prevents default then we do the same on the donor.
+		// Piggyback on a dorderNor event to simulate a different one.
+		// Fake originalEvent to avoid dorderNor's stopPropagation, but if the
+		// simulated event prevents default then we do the same on the dorderNor.
 		var e = jQuery.extend(
 			new jQuery.Event(),
 			event,
@@ -8640,7 +8640,7 @@ var fxNow, timerId,
 		}]
 	};
 
-// Animations created synchronously will run synchronously
+// Animations created synchrorderNously will run synchrorderNously
 function createFxNow() {
 	setTimeout(function() {
 		fxNow = undefined;

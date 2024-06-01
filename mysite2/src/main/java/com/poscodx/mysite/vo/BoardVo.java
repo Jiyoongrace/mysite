@@ -8,13 +8,15 @@ import lombok.ToString;
 @Setter
 @ToString
 public class BoardVo {
+
     private Long no;
     private String title;
     private String contents;
-    private Long hit;
+    private int hit;
     private String regDate;
-    private Long groupNo;
-    private Long orderNo;
-    private Long depth;
+    private int groupNo;
+    private int orderNo;
+    private int depth;
     private Long userNo;
+    private String userName;
 }

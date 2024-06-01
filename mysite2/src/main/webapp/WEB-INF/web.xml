@@ -5,16 +5,16 @@
          version="2.5">
     <display-name>mysite2</display-name>
 
-    <!-- Context Parameter -->
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/applicationContext.xml</param-value>
-    </context-param>
+<!--    &lt;!&ndash; Context Parameter &ndash;&gt;-->
+<!--    <context-param>-->
+<!--        <param-name>contextConfigLocation</param-name>-->
+<!--        <param-value>/WEB-INF/applicationContext.xml</param-value>-->
+<!--    </context-param>-->
 
-    <!-- Context Load Listener -->
-    <listener>
-        <listener-class>com.poscodx.mysite.web.ContextLoadListener</listener-class>
-    </listener>
+<!--    &lt;!&ndash; Context Load Listener &ndash;&gt;-->
+<!--    <listener>-->
+<!--        <listener-class>com.poscodx.mysite.web.ContextLoadListener</listener-class>-->
+<!--    </listener>-->
 
     <!-- Encoding Filter -->
     <filter>

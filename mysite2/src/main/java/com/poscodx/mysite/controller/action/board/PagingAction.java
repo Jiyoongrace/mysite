@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class PagingAction implements Action {
     @Override
-    public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.sendRedirect(request.getContextPath() + "/board?a=board");
     }
 }
