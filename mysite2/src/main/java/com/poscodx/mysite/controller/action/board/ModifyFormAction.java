@@ -28,7 +28,6 @@ public class ModifyFormAction implements Action {
         }
         Long userNo = authUser.getNo();
         Long boardWriter = vo.getUserNo();
-        System.out.println("userNo : "+userNo+", boardWriter : "+boardWriter);
 
         if(userNo != boardWriter) {
             response.sendRedirect(request.getContextPath() + "/board");
