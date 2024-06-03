@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>mysite2</module>
+        <module>mysite3</module>
     </modules>
 
     <properties>
