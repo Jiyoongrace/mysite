@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.poscodx.mysite.exception.UserRepositoryException;
 import com.poscodx.mysite.vo.UserVo;
 import org.springframework.stereotype.Repository;
 
@@ -72,7 +73,7 @@ public class UserRepository {
             }
             rs.close();
         } catch (SQLException e) {
-            System.out.println("Error:" + e);
+            throw new UserRepositoryException(e.toString());
         }
 
         return result;

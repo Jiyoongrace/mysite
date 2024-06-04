@@ -9,6 +9,7 @@ select no, name from user where email = 'giyun3632@naver.com' and password=passw
 
 -- test
 select * from user;
+select * from guestbook;
 select * from board;
 select * from emaillist;
 
