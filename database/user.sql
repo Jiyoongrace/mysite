@@ -17,6 +17,9 @@ insert into board values(null, '포스코DX 8기 모집합니다~', '포스코DX
 insert into board values(null, '저 신청할래요', '참가신청 방법 알려주세요\n우와~~\n', 0, now(), 1, 2, 1, 3);
 insert into board values(null, 'test', 'test', 0, now(), 1, 2, 1, 3);
 
-
+select no, name, contents, date_format(reg_date, '%Y/%m/%d %H:%i:%s') as regDate
+        from guestbook
+        order by reg_date desc;
+        
 delete from board;
 delete from user where name = '귤귤';
