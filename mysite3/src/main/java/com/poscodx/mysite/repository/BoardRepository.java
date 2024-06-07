@@ -21,7 +21,7 @@ public class BoardRepository {
     }
 
     public List<BoardVo> findAllByPageAndKeword(String keyword, Integer page, Integer size) {
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         map.put("keyword", keyword);
         map.put("startIndex", (page - 1) * size);
         map.put("size", size);
@@ -34,7 +34,7 @@ public class BoardRepository {
     }
 
     public int delete(Long no, Long userNo) {
-        Map<String, Long> map = new HashMap<String, Long>();
+        Map<String, Long> map = new HashMap<>();
         map.put("no", no);
         map.put("userNo", userNo);
 
@@ -46,7 +46,7 @@ public class BoardRepository {
     }
 
     public BoardVo findByNoAndUserNo(Long no, Long userNo) {
-        Map<String, Long> map = new HashMap<String, Long>();
+        Map<String, Long> map = new HashMap<>();
         map.put("no", no);
         map.put("userNo", userNo);
 
@@ -58,7 +58,7 @@ public class BoardRepository {
     }
 
     public int updateOrderNo(Integer groupNo, Integer orderNo) {
-        Map<String, Integer> map = new HashMap<String, Integer>();
+        Map<String, Integer> map = new HashMap<>();
         map.put("groupNo", groupNo);
         map.put("orderNo", orderNo);
 
