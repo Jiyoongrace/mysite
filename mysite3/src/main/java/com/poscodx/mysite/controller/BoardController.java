@@ -1,5 +1,7 @@
 package com.poscodx.mysite.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.poscodx.mysite.service.BoardService;
 import com.poscodx.mysite.vo.BoardVo;
 import com.poscodx.mysite.vo.UserVo;
-import com.poscodx.mysite.web.util.WebUtil;
 
 @Controller
 @RequestMapping("/board")
@@ -58,9 +59,10 @@ public class BoardController {
             return "redirect:/";
         }
         ////////////////////////
+        String encodedKeyword = encodeURL(keyword, "UTF-8");
 
         boardService.deleteContents(boardNo, authUser.getNo());
-        return "redirect:/board?p=" + page + "&kwd=" + WebUtil.encodeURL(keyword, "UTF-8");
+        return "redirect:/board?p=" + page + "&kwd=" + encodedKeyword;
     }
 
     @RequestMapping("/modify/{no}")
@@ -92,9 +94,12 @@ public class BoardController {
 
         boardVo.setUserNo(authUser.getNo());
         boardService.modifyContents(boardVo);
+
+        String encodedKeyword = encodeURL(keyword, "UTF-8");
+
         return "redirect:/board/view/" + boardVo.getNo() +
                 "?p=" + page +
-                "&kwd=" + WebUtil.encodeURL( keyword, "UTF-8" );
+                "&kwd=" + encodedKeyword;
     }
 
     @RequestMapping(value="/write", method=RequestMethod.GET)
@@ -124,7 +129,9 @@ public class BoardController {
         boardVo.setUserNo(authUser.getNo());
         boardService.addContents(boardVo);
 
-        return	"redirect:/board?p=" + page + "&kwd=" + WebUtil.encodeURL(keyword, "UTF-8");
+        String encodedKeyword = encodeURL(keyword, "UTF-8");
+
+        return	"redirect:/board?p=" + page + "&kwd=" + encodedKeyword;
     }
 
 
@@ -147,5 +154,15 @@ public class BoardController {
         model.addAttribute("boardVo", boardVo);
 
         return "board/reply";
+    }
+
+    // encoding
+    private String encodeURL(String value, String encoding) {
+        try {
+            return URLEncoder.encode(value, encoding);
+        } catch (UnsupportedEncodingException e) {
+            System.out.println("Error: " + e);
+        }
+        return value;
     }
 }
