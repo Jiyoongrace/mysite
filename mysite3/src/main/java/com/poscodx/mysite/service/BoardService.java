@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.poscodx.mysite.repository.BoardRepository;
 import com.poscodx.mysite.vo.BoardVo;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class BoardService {
@@ -18,6 +19,7 @@ public class BoardService {
     @Autowired
     private BoardRepository boardRepository;
 
+    @Transactional
     public void addContents(BoardVo boardVo) {
         if(boardVo.getGroupNo() != null) {
             boardRepository.updateOrderNo(boardVo.getGroupNo(), boardVo.getOrderNo());
