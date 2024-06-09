@@ -20,13 +20,13 @@ public class BoardRepository {
         return sqlSession.insert("board.insert", boardVo);
     }
 
-    public List<BoardVo> findAllByPageAndKeword(String keyword, Integer page, Integer size) {
+    public List<BoardVo> findAllByPageAndKeyword(String keyword, Integer page, Integer size) {
         Map<String, Object> map = new HashMap<>();
         map.put("keyword", keyword);
         map.put("startIndex", (page - 1) * size);
         map.put("size", size);
 
-        return sqlSession.selectList("board.findAllByPageAndKeword", map);
+        return sqlSession.selectList("board.findAllByPageAndKeyword", map);
     }
 
     public int update(BoardVo boardVo) {
@@ -62,7 +62,7 @@ public class BoardRepository {
         map.put("groupNo", groupNo);
         map.put("orderNo", orderNo);
 
-        return sqlSession.update("board.updateOrederNo", map);
+        return sqlSession.update("board.updateOrderNo", map);
     }
 
     public int getTotalCount(String keyword) {

@@ -80,7 +80,7 @@ public class BoardService {
         int nextPage = (endPage < totalPages) ? endPage + 1 : 0; // 끝 페이지가 전체 페이지 수보다 작으면 다음 페이지가 있다.
 
         // 현재 페이지의 게시물 목록을 키워드를 사용하여 가져온다.
-        List<BoardVo> list = boardRepository.findAllByPageAndKeword(keyword, currentPage, LIST_SIZE);
+        List<BoardVo> list = boardRepository.findAllByPageAndKeyword(keyword, currentPage, LIST_SIZE);
 
         // 결과 맵 준비
         Map<String, Object> map = new HashMap<>();

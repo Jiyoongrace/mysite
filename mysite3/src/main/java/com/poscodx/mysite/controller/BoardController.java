@@ -58,7 +58,7 @@ public class BoardController {
         if(authUser == null) {
             return "redirect:/";
         }
-        ////////////////////////
+
         String encodedKeyword = encodeURL(keyword, "UTF-8");
 
         boardService.deleteContents(boardNo, authUser.getNo());
@@ -72,7 +72,6 @@ public class BoardController {
         if(authUser == null) {
             return "redirect:/";
         }
-        ////////////////////////
 
         BoardVo boardVo = boardService.getContents(no, authUser.getNo());
         model.addAttribute("boardVo", boardVo);
@@ -90,7 +89,6 @@ public class BoardController {
         if(authUser == null) {
             return "redirect:/";
         }
-        ////////////////////////
 
         boardVo.setUserNo(authUser.getNo());
         boardService.modifyContents(boardVo);
@@ -109,7 +107,6 @@ public class BoardController {
         if(authUser == null) {
             return "redirect:/";
         }
-        ////////////////////////
         return "board/write";
     }
 
@@ -124,7 +121,6 @@ public class BoardController {
         if(authUser == null) {
             return "redirect:/";
         }
-        ////////////////////////
 
         boardVo.setUserNo(authUser.getNo());
         boardService.addContents(boardVo);
@@ -145,7 +141,6 @@ public class BoardController {
         if(authUser == null) {
             return "redirect:/";
         }
-        ////////////////////////
 
         BoardVo boardVo = boardService.getContents(no);
         boardVo.setOrderNo(boardVo.getOrderNo() + 1);

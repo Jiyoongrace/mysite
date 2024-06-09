@@ -49,7 +49,6 @@ public class UserController {
             return "user/login";
         }
 
-        // login 처리
         session.setAttribute("authUser", authUser);
 
         return "redirect:/";
