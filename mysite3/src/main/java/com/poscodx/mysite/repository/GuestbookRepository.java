@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.poscodx.mysite.vo.GuestbookVo;
+import org.springframework.util.StopWatch;
 
 @Repository
 public class GuestbookRepository {
@@ -17,7 +18,9 @@ public class GuestbookRepository {
     }
 
     public List<GuestbookVo> findAll() {
-        return sqlSession.selectList("guestbook.findAll");
+
+        List<GuestbookVo> list = sqlSession.selectList("guestbook.findAll");
+        return list;
     }
 
     public GuestbookVo findByNo(Long no) {
