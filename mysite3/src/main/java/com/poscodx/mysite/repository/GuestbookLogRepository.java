@@ -19,7 +19,7 @@ public class GuestbookLogRepository {
         return sqlSession.update("guestbooklog.update-increase");
     }
 
-    public int update(Long no) {
-        return sqlSession.update("guestbooklog.update-decrease", no);
+    public int update(String regDate) {
+        return sqlSession.update("guestbooklog.update-decrease", regDate);
     }
 }

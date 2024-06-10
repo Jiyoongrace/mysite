@@ -33,4 +33,12 @@
              and password = #{password }
             ]]>
     </delete>
+
+    <select id="findByNo" parameterType="long" resultType="guestbookVo">
+		<![CDATA[
+        select no, name, contents, date_format(reg_date, '%Y-%m-%d') as regDate
+        from guestbook
+        where no = #{no }
+        ]]>
+	</select>
 </mapper>
