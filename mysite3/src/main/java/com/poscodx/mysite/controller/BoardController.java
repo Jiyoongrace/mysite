@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import com.poscodx.mysite.security.Auth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,6 +48,7 @@ public class BoardController {
         return "board/view";
     }
 
+    @Auth
     @RequestMapping("/delete/{no}")
     public String delete(
             HttpSession session,
@@ -65,6 +67,7 @@ public class BoardController {
         return "redirect:/board?p=" + page + "&kwd=" + encodedKeyword;
     }
 
+    @Auth
     @RequestMapping("/modify/{no}")
     public String modify(HttpSession session, @PathVariable("no") Long no, Model model) {
         // access control
@@ -78,6 +81,7 @@ public class BoardController {
         return "board/modify";
     }
 
+    @Auth
     @RequestMapping(value="/modify", method=RequestMethod.POST)
     public String modify(
             HttpSession session,
@@ -100,16 +104,18 @@ public class BoardController {
                 "&kwd=" + encodedKeyword;
     }
 
+    @Auth
     @RequestMapping(value="/write", method=RequestMethod.GET)
     public String write(HttpSession session) {
-        // access control
-        UserVo authUser = (UserVo)session.getAttribute("authUser");
-        if(authUser == null) {
-            return "redirect:/";
-        }
+//        // access control
+//        UserVo authUser = (UserVo)session.getAttribute("authUser");
+//        if(authUser == null) {
+//            return "redirect:/";
+//        }
         return "board/write";
     }
 
+    @Auth
     @RequestMapping(value="/write", method=RequestMethod.POST)
     public String write(
             HttpSession session,
@@ -131,6 +137,7 @@ public class BoardController {
     }
 
 
+    @Auth
     @RequestMapping(value="/reply/{no}")
     public String reply(
             HttpSession session,
