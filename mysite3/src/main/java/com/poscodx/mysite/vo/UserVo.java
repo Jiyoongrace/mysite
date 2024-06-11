@@ -14,4 +14,5 @@ public class UserVo {
     private String password;
     private String gender;
     private String joinDate;
+    private String role;
 }
