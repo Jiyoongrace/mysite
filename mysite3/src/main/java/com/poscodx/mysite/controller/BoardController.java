@@ -4,9 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import com.poscodx.mysite.security.Auth;
+import com.poscodx.mysite.security.AuthUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,15 +50,10 @@ public class BoardController {
     @Auth
     @RequestMapping("/delete/{no}")
     public String delete(
-            HttpSession session,
+            @AuthUser UserVo authUser,
             @PathVariable("no") Long boardNo,
             @RequestParam(value="p", required=true, defaultValue="1") Integer page,
             @RequestParam(value="kwd", required=true, defaultValue="") String keyword) {
-        // access control
-        UserVo authUser = (UserVo)session.getAttribute("authUser");
-        if(authUser == null) {
-            return "redirect:/";
-        }
 
         String encodedKeyword = encodeURL(keyword, "UTF-8");
 
@@ -69,13 +63,7 @@ public class BoardController {
 
     @Auth
     @RequestMapping("/modify/{no}")
-    public String modify(HttpSession session, @PathVariable("no") Long no, Model model) {
-        // access control
-        UserVo authUser = (UserVo)session.getAttribute("authUser");
-        if(authUser == null) {
-            return "redirect:/";
-        }
-
+    public String modify(@AuthUser UserVo authUser, @PathVariable("no") Long no, Model model) {
         BoardVo boardVo = boardService.getContents(no, authUser.getNo());
         model.addAttribute("boardVo", boardVo);
         return "board/modify";
@@ -84,16 +72,10 @@ public class BoardController {
     @Auth
     @RequestMapping(value="/modify", method=RequestMethod.POST)
     public String modify(
-            HttpSession session,
+            @AuthUser UserVo authUser,
             BoardVo boardVo,
             @RequestParam(value="p", required=true, defaultValue="1") Integer page,
             @RequestParam(value="kwd", required=true, defaultValue="") String keyword) {
-        // access control
-        UserVo authUser = (UserVo)session.getAttribute("authUser");
-        if(authUser == null) {
-            return "redirect:/";
-        }
-
         boardVo.setUserNo(authUser.getNo());
         boardService.modifyContents(boardVo);
 
@@ -106,27 +88,17 @@ public class BoardController {
 
     @Auth
     @RequestMapping(value="/write", method=RequestMethod.GET)
-    public String write(HttpSession session) {
-//        // access control
-//        UserVo authUser = (UserVo)session.getAttribute("authUser");
-//        if(authUser == null) {
-//            return "redirect:/";
-//        }
+    public String write(@AuthUser UserVo authUser) {
         return "board/write";
     }
 
     @Auth
     @RequestMapping(value="/write", method=RequestMethod.POST)
     public String write(
-            HttpSession session,
+            @AuthUser UserVo authUser,
             @ModelAttribute BoardVo boardVo,
             @RequestParam(value="p", required=true, defaultValue="1") Integer page,
             @RequestParam(value="kwd", required=true, defaultValue="") String keyword) {
-        // access control
-        UserVo authUser = (UserVo)session.getAttribute("authUser");
-        if(authUser == null) {
-            return "redirect:/";
-        }
 
         boardVo.setUserNo(authUser.getNo());
         boardService.addContents(boardVo);
@@ -140,15 +112,9 @@ public class BoardController {
     @Auth
     @RequestMapping(value="/reply/{no}")
     public String reply(
-            HttpSession session,
+            @AuthUser UserVo authUser,
             @PathVariable("no") Long no,
             Model model) {
-        // access control
-        UserVo authUser = (UserVo)session.getAttribute("authUser");
-        if(authUser == null) {
-            return "redirect:/";
-        }
-
         BoardVo boardVo = boardService.getContents(no);
         boardVo.setOrderNo(boardVo.getOrderNo() + 1);
         boardVo.setDepth(boardVo.getDepth() + 1);
