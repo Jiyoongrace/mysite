@@ -1,7 +1,6 @@
 package com.poscodx.mysite.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
+import com.poscodx.mysite.service.SiteService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -9,8 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class MainController {
-    @Autowired
-    private ApplicationContext appContext;
+    private SiteService siteService;
+
+    public MainController(SiteService siteService) {
+        this.siteService = siteService;
+    }
 
     @RequestMapping({"/", "/main"})
     public String index(HttpServletRequest request) {

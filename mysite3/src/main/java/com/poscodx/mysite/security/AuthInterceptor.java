@@ -29,12 +29,10 @@ public class AuthInterceptor implements HandlerInterceptor {
 
         }
 
-        // 5. Handler Method에 @Auth가 없는 경우 (annotation 확인)
+        // 5. Type이나 Method에 @Auth가 없는 경우 (annotation 확인)
         if (auth == null) {
             return true;
         }
-
-        // System.out.println(auth.value());
 
         // 6. @Auth가 붙어있기 때문에 인증(Authentication) 확인(session 확인)
         HttpSession session = request.getSession();
