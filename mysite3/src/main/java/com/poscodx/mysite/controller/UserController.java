@@ -10,8 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpSession;
-
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -40,31 +38,7 @@ public class UserController {
         return "user/login";
     }
 
-//    @RequestMapping(value = "/login", method = RequestMethod.POST)
-//    public String login(HttpSession session, UserVo vo, Model model) {
-//        UserVo authUser = userService.getUser(vo.getEmail(), vo.getPassword());
-//
-//        if (authUser == null) {
-//            model.addAttribute("email", vo.getEmail());
-//            model.addAttribute("result", "fail");
-//
-//            return "user/login";
-//        }
-//
-//        session.setAttribute("authUser", authUser);
-//
-//        return "redirect:/";
-//    }
-
-//    @RequestMapping("/logout")
-//    public String logout(HttpSession session) {
-//        session.removeAttribute("authUser");
-//        session.invalidate(); // Jsession ID 새로 만듦
-//
-//        return "redirect:/";
-//    }
-
-    @Auth
+    @Auth // (value = "hello") : value만 생략 가능, value가 아닌 다른 값의 이름은 적어줘야 함
     @RequestMapping(value = "/update", method = RequestMethod.GET)
     public String update(@AuthUser UserVo authUser, Model model) {
         UserVo vo = userService.getUser(authUser.getNo());
