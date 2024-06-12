@@ -6,13 +6,17 @@
         <![CDATA[
         select no, title, welcome, profile, description
         from site
+        limit 0, 1;
         ]]>
     </select>
-    <update id="update" parameterType="long">
+    <update id="update" parameterType="sitevo">
         <![CDATA[
         update site
-        set hit = hit + 1
-        where no=#{no }
+        set title = #{title },
+            welcome = #{welcome },
+            profile = #{profile },
+            description = #{description }
+        where no = 1
         ]]>
     </update>
 </mapper>
