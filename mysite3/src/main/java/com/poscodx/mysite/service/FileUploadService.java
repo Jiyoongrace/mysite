@@ -12,7 +12,7 @@ import java.util.Calendar;
 @Service
 public class FileUploadService {
     private static String SAVE_PATH = "/mysite-profile";
-    private static String URL_PATH = "/assets/images";
+    private static String URL_PATH = "/images";
 
     public String restore(MultipartFile file) {
         String url = null;
