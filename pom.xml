@@ -18,7 +18,7 @@
     </properties>
 
     <build>
-        <finalName>mysite2</finalName>
+        <finalName>mysite</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
