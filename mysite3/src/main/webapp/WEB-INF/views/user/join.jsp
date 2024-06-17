@@ -27,12 +27,7 @@
 						console.error(err);
 					},
 					success: function(response) {
-						if(response.result == "fail") {
-							console.error(response.message);
-							return;
-						}
-
-						if(response.data) {
+						if(response.exist) {
 							alert("존재하는 이메일입니다. 다른 이메일을 이용해 주세요.");
 							$("#email").val("");
 							$("#email").focus();
