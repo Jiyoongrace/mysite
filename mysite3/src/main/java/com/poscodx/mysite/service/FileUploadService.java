@@ -46,7 +46,6 @@ public class FileUploadService {
         } catch(IOException ex) {
             throw new RuntimeException(ex);
         }
-
         return url;
     }
 
