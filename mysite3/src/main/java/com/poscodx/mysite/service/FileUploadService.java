@@ -1,13 +1,13 @@
 package com.poscodx.mysite.service;
 
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Calendar;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class FileUploadService {
@@ -23,7 +23,7 @@ public class FileUploadService {
                 uploadDirectory.mkdirs();
             }
 
-            if(file.isEmpty()) {
+            if(file == null || file.isEmpty()) {
                 return url;
             }
 
@@ -42,9 +42,11 @@ public class FileUploadService {
             os.close();
 
             url = URL_PATH + "/" + saveFilename;
-        } catch (IOException ex) {
+
+        } catch(IOException ex) {
             throw new RuntimeException(ex);
         }
+
         return url;
     }
 
@@ -63,4 +65,5 @@ public class FileUploadService {
 
         return filename;
     }
+
 }
