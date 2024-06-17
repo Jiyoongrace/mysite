@@ -18,10 +18,10 @@ public class SiteInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        SiteVo siteVo = (SiteVo) request.getServletContext().getAttribute("siteVo");
+        SiteVo siteVo = (SiteVo) request.getServletContext().getAttribute("sitevo");
         if (siteVo == null) {
             siteVo = siteService.getSite();
-            request.getServletContext().setAttribute("siteVo", siteVo);
+            request.getServletContext().setAttribute("sitevo", siteVo);
         }
 
         return true;

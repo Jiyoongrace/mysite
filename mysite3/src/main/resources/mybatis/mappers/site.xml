@@ -6,6 +6,7 @@
         <![CDATA[
         select no, title, welcome, profile, description
         from site
+        order by no asc
         limit 0, 1;
         ]]>
     </select>
