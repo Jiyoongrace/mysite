@@ -21,7 +21,7 @@
 </script>
 <div id="header">
     <h1>
-        <!-- ${sitevo.title } -->
+        <!--${sitevo.title }-->
         ${site.title }
     </h1>
     <div id="languages">
