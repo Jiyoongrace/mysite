@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.poscodx.mysite.security.Auth;
 import com.poscodx.mysite.security.AuthUser;
+import com.poscodx.mysite.web.util.WebUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,10 +56,8 @@ public class BoardController {
             @RequestParam(value="p", required=true, defaultValue="1") Integer page,
             @RequestParam(value="kwd", required=true, defaultValue="") String keyword) {
 
-        String encodedKeyword = encodeURL(keyword, "UTF-8");
-
         boardService.deleteContents(boardNo, authUser.getNo());
-        return "redirect:/board?p=" + page + "&kwd=" + encodedKeyword;
+        return "redirect:/board?p=" + page + "&kwd=" + WebUtil.encodeURL(keyword, "UTF-8");
     }
 
     @Auth
@@ -76,14 +75,13 @@ public class BoardController {
             BoardVo boardVo,
             @RequestParam(value="p", required=true, defaultValue="1") Integer page,
             @RequestParam(value="kwd", required=true, defaultValue="") String keyword) {
+
         boardVo.setUserNo(authUser.getNo());
         boardService.modifyContents(boardVo);
 
-        String encodedKeyword = encodeURL(keyword, "UTF-8");
-
         return "redirect:/board/view/" + boardVo.getNo() +
                 "?p=" + page +
-                "&kwd=" + encodedKeyword;
+                "&kwd=" + WebUtil.encodeURL(keyword, "UTF-8");
     }
 
     @Auth
@@ -103,9 +101,7 @@ public class BoardController {
         boardVo.setUserNo(authUser.getNo());
         boardService.addContents(boardVo);
 
-        String encodedKeyword = encodeURL(keyword, "UTF-8");
-
-        return	"redirect:/board?p=" + page + "&kwd=" + encodedKeyword;
+        return "redirect:/board?p=" + page + "&kwd=" + WebUtil.encodeURL(keyword, "UTF-8");
     }
 
 
@@ -122,15 +118,5 @@ public class BoardController {
         model.addAttribute("boardVo", boardVo);
 
         return "board/reply";
-    }
-
-    // encoding
-    private String encodeURL(String value, String encoding) {
-        try {
-            return URLEncoder.encode(value, encoding);
-        } catch (UnsupportedEncodingException e) {
-            System.out.println("Error: " + e);
-        }
-        return value;
     }
 }
