@@ -46,7 +46,7 @@ public class GlobalExceptionHandler {
             os.close();
         } else {
             // 4. 사과 페이지(정상 종료)
-            request.getRequestDispatcher("/WEB-INF/views/errors/exception")
+            request.getRequestDispatcher("/WEB-INF/views/errors/exception.jsp")
                     .forward(request, response);
         }
     }
