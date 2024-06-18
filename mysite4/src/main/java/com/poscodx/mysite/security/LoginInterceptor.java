@@ -2,6 +2,7 @@ package com.poscodx.mysite.security;
 
 import com.poscodx.mysite.service.UserService;
 import com.poscodx.mysite.vo.UserVo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,11 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class LoginInterceptor implements HandlerInterceptor {
+    @Autowired
     private UserService userService;
-
-    public LoginInterceptor(UserService userService) {
-        this.userService = userService;
-    }
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
