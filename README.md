@@ -70,7 +70,8 @@
    - JSTL & EL
 6. Security **
    - Authentication(인증) & Authorization(권한)
-   - Spring Security
+   - Spring Interceptor & ArgumentResolver
+   - Declarative Annotations: @Auth, @AuthUser 지원
 7. Serving Static Resources
    - Spring Resource Handler: External Resources(files uploaded)
    - Default Servlet Handler: assets(images, css, js, etc..)
