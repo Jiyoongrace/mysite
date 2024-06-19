@@ -58,8 +58,8 @@
    - web.xml 기반 배포
 2. Framework
    - Spring Framework
-   - Java-Based Configuration **
-   - Spring @PropertySource Annotation Based on Environment **
+   **- Java-Based Configuration ****
+   **- Spring @PropertySource Annotation Based on Environment ****
 3. MVC
    - Spring MVC
 4. Data Access
