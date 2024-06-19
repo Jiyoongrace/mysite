@@ -7,6 +7,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -46,8 +47,16 @@ public class GlobalExceptionHandler {
             os.close();
         } else {
             // 4. 사과 페이지(정상 종료)
-            request.getRequestDispatcher("/WEB-INF/views/errors/exception.jsp")
-                    .forward(request, response);
+            if(e instanceof NoHandlerFoundException) {
+                request
+                        .getRequestDispatcher("/WEB-INF/views/errors/404.jsp")
+                        .forward(request, response);
+
+            } else {
+                request.setAttribute("error", errors.toString());
+                request.getRequestDispatcher("/WEB-INF/views/errors/exception.jsp")
+                        .forward(request, response);
+            }
         }
     }
 }
