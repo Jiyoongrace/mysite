@@ -39,16 +39,16 @@
 6. Security **
    - Authentication(인증) & Authorization(권한)
    - Spring Interceptor & ArgumentResolver
-   - Declative Annotaions: @Auth, @AuthUser 지원
+   - Declarative Annotations: @Auth, @AuthUser 지원
 7. Serving Static Resources **
    - Spring Resource Handler: External Resources(files uploaded)
    - Default Servlet Handler: assets(images, css, js, etc..)
 8. 기능 **
    - Upload File: Spring Multipart Resolver
-   - Bean Validation: @Valid Annotaion
+   - Bean Validation: @Valid Annotation
    - Exception Handling: @ControllerAdvice Annotation
    - Logging: slf4
-   - Spring Application Conext Event Listener
+   - Spring Application Context Event Listener
    - 다국어 지원(i18n): Spring Message Source & CookieLocaleResolver
    - Measuring Execution Time: Spring Aspects
 
@@ -70,7 +70,7 @@
    - JSTL & EL
 6. Security **
    - Authentication(인증) & Authorization(권한)
-   - Spring Secuirty
+   - Spring Security
 7. Serving Static Resources
    - Spring Resource Handler: External Resources(files uploaded)
    - Default Servlet Handler: assets(images, css, js, etc..)
@@ -94,7 +94,7 @@
    - Thymeleaf Template View **
 6. Security
    - Authentication(인증) & Authorization(권한)
-   - Spring Secuirty
+   - Spring Security
 7. Serving Static Resources
    - Spring Resource Handler: External Resources(files uploaded)
    - Spring Resource Handler: assets(images, css, js, etc..) **
@@ -122,7 +122,7 @@
    - Thymeleaf Template View
 6. Security
    - Authentication(인증) & Authorization(권한)
-   - Spring Secuirty
+   - Spring Security
 7. Serving Static Resources
    - Spring Resource Handler: External Resources(files uploaded)
    - Spring Resource Handler: assets(images, css, js, etc..) **
@@ -132,7 +132,7 @@
 
 ### mysite07
 1. Packaging
-   - jar(Embeded Tomcat) **
+   - jar(Embedded Tomcat) **
 2. Framework
    - Spring Framework
    - Spring Boot
@@ -148,7 +148,7 @@
    - Thymeleaf Template View
 6. Security
    - Authentication(인증) & Authorization(권한)
-   - Spring Secuirty
+   - Spring Security
 7. Serving Static Resources
    - Spring Resource Handler: External Resources(files uploaded)
    - Spring Resource Handler: assets(images, css, js, etc..)
