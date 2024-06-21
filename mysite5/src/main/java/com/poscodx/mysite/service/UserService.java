@@ -3,6 +3,7 @@ package com.poscodx.mysite.service;
 import com.poscodx.mysite.repository.UserRepository;
 import com.poscodx.mysite.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,7 +11,11 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public void join(UserVo vo) {
+        vo.setPassword(passwordEncoder.encode(vo.getPassword()));
         userRepository.insert(vo);
     }
 
@@ -23,6 +28,7 @@ public class UserService {
     }
 
     public void update(UserVo vo) {
+        vo.setPassword(vo.getPassword().equals("") ? "" : passwordEncoder.encode(vo.getPassword()));
         userRepository.update(vo);
     }
 
