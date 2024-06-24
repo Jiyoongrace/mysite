@@ -1,17 +1,18 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: giyun
-  Date: 2024-05-27
-  Time: 오후 1:33
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
 </head>
 <body>
-    <h1>500 Internal Server Error</h1>
-    <p>장애가 발생했습니다.</p>
+<h1>Exception Handler: Spring</h1>
+<hr>
+<pre style="color: #fe1100">
+    ${error }
+</pre>
 </body>
 </html>
