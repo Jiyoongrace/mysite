@@ -6,3 +6,5 @@ update site set title = 'MySite.', welcome = '안녕하세요~ 배지윤의 mysi
 
 select * from user;
 delete from user where no = 14;
+
+update user set role = 'ADMIN' where no = 16;
