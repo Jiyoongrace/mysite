@@ -4,6 +4,7 @@ import com.poscodx.mysite.service.SiteService;
 import com.poscodx.mysite.vo.UserVo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,7 @@ public class MainController {
     }
 
     @RequestMapping({"/", "/main"})
-    public String index(HttpServletRequest request) {
+    public String index() {
         return "main/index";
     }
 

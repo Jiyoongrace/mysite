@@ -17,7 +17,7 @@ public class MainController {
     }
 
     @RequestMapping({"/", "/main"})
-    public String index(HttpServletRequest request) {
+    public String index() {
         return "main/index";
     }
 
