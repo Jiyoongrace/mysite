@@ -89,7 +89,7 @@
             <version>${org.springframework.security-version}</version>
         </dependency>
 
-        <!-- spring security taglibs -->
+        <!-- spring security tag library -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-taglibs</artifactId>
