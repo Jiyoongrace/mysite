@@ -49,7 +49,7 @@ public class GlobalExceptionHandler {
             // 4. 사과 페이지(정상 종료)
             if(e instanceof NoHandlerFoundException) {
 //                request
-//                        .getRequestDispatcher("/WEB-INF/views/errors/404.jsp")
+//                        .getRequestDispatcher("/WEB-INF/views/views/errors/404.jsp")
 //                        .forward(request, response);
                 request
                         .getRequestDispatcher("/error/404")
@@ -57,9 +57,9 @@ public class GlobalExceptionHandler {
 
             } else {
                 request.setAttribute("error", errors.toString());
-//                request.getRequestDispatcher("/WEB-INF/views/errors/exception.jsp")
+//                request.getRequestDispatcher("/WEB-INF/views/views/errors/exception.jsp")
 //                        .forward(request, response);
-                request.getRequestDispatcher("/error/500")
+                request.getRequestDispatcher("/error /500")
                         .forward(request, response);
             }
         }

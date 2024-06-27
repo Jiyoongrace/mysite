@@ -2,14 +2,20 @@ package com.poscodx.mysite.controller;
 
 import com.poscodx.mysite.service.SiteService;
 import com.poscodx.mysite.vo.UserVo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class MainController {
+    @Autowired
+    private ServletContext servletContext;
+
     private SiteService siteService;
 
     public MainController(SiteService siteService) {
@@ -17,7 +23,8 @@ public class MainController {
     }
 
     @RequestMapping({"/", "/main"})
-    public String index(HttpServletRequest request) {
+    public String index(Model model) {
+        model.addAttribute("servletContext", servletContext);
         return "main/index";
     }
 

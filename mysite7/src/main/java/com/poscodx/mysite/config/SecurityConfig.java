@@ -85,7 +85,7 @@ public class SecurityConfig {
                             .permitAll();
                 });
 //                .exceptionHandling(exceptionHandlingConfigurer -> {
-//                    exceptionHandlingConfigurer.accessDeniedPage("/WEB-INF/views/errors/403.jsp");
+//                    exceptionHandlingConfigurer.accessDeniedPage("/WEB-INF/views/views/errors/403.jsp");
 //                });
         return http.build();
     }
