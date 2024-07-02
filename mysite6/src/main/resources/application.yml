@@ -24,7 +24,7 @@ spring:
   # web
   web:
     resources:
-      static-locations: file:/mysite-uploads/, classpath:assets/
+      static-locations: file:/Users/jiyoon/mysite-uploads/, classpath:assets/
 
   # message resources(internationalization = i18n i와 n 사이에 18글자가 있어서)
   messages:
@@ -42,7 +42,7 @@ spring:
   # datasource
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://192.168.0.195:3306/webdb?charset=utf8
+    url: jdbc:mariadb://192.168.64.7:3306/webdb?charset=utf8
     username: webdb
     password: webdb
     hikari:
@@ -55,7 +55,7 @@ mybatis:
 
 # server configuration
 server:
-  port: 8088
+  port: 8080
   servlet:
     context-path: /mysite6
     encoding:

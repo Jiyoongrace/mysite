@@ -1,7 +1,5 @@
 package com.poscodx.mysite.config;
 
-import com.poscodx.mysite.event.ApplicationContextEventListener;
-import com.poscodx.mysite.interceptor.SiteInterceptor;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -10,14 +8,14 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
 import org.thymeleaf.spring5.ISpringTemplateEngine;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
+import com.poscodx.mysite.event.ApplicationContextEventListener;
+import com.poscodx.mysite.interceptor.SiteInterceptor;
+
 @SpringBootConfiguration
 public class MvcConfig implements WebMvcConfigurer {
-
     // Locale Resolver
     @Bean
     public LocaleResolver localeResolver() {
@@ -35,22 +33,6 @@ public class MvcConfig implements WebMvcConfigurer {
 
         viewResolver.setTemplateEngine(templateEngine);
         viewResolver.setCharacterEncoding("UTF-8");
-        viewResolver.setOrder(1);
-
-        return viewResolver;
-    }
-
-    // JSP View Resolver
-    @Bean
-    public ViewResolver viewResolver() {
-        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setViewClass(JstlView.class);
-        viewResolver.setPrefix("/WEB-INF/");
-        viewResolver.setSuffix(".jsp");
-        viewResolver.setExposeContextBeansAsAttributes(true);
-        viewResolver.setExposedContextBeanNames("site");
-        viewResolver.setViewNames("views/*");
-        viewResolver.setOrder(1);
 
         return viewResolver;
     }

@@ -26,7 +26,7 @@ public class UserVo {
     @Length(min=4, max=16)
     private String password; // @Pattern 으로 정규표현식 적용해서 많이 씀
 
-    private String gender;
+    private String gender = "female";
     private String joinDate;
     private String role;
 
