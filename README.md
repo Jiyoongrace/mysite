@@ -96,7 +96,7 @@
    - JSTL & EL
 6. Security
    - Authentication(인증) & Authorization(권한)
-   - Spring Security
+   - Spring Security **
 7. Serving Static Resources
    - Spring Resource Handler: External Resources(files uploaded)
    - Spring Resource Handler: assets(images, css, js, etc..) **
