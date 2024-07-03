@@ -1,19 +1,20 @@
 package com.poscodx.mysite.service;
 
-import com.poscodx.mysite.repository.BoardRepository;
-import com.poscodx.mysite.vo.BoardVo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.poscodx.mysite.repository.BoardRepository;
+import com.poscodx.mysite.vo.BoardVo;
+
 @Service
 public class BoardService {
-    private static final int LIST_SIZE = 5; // 한 페이지에 보여줄 게시물 수
-    private static final int PAGE_SIZE = 5; // 한 번에 보여줄 페이지 번호 수
+    private static final int LIST_SIZE = 5; //리스팅되는 게시물의 수
+    private static final int PAGE_SIZE = 5; //페이지 리스트의 페이지 수
 
     @Autowired
     private BoardRepository boardRepository;
@@ -52,42 +53,40 @@ public class BoardService {
 
     public Map<String, Object> getContentsList(int currentPage, String keyword) {
 
-        // 전체 게시물 수 계산
+        //1. 페이징을 위한 기본 데이터 계산
         int totalCount = boardRepository.getTotalCount(keyword);
+        int pageCount = (int)Math.ceil((double)totalCount / LIST_SIZE);
+        int blockCount = (int)Math.ceil((double)pageCount / PAGE_SIZE);
+        int currentBlock = (int)Math.ceil((double)currentPage / PAGE_SIZE);
 
-        // 전체 페이지 수 계산
-        int totalPages = (int) Math.ceil((double) totalCount / LIST_SIZE);
-
-        // 현재 페이지 유효성 검사
-        if (currentPage > totalPages) { // 현재 페이지 번호가 전체 페이지 수를 넘지 않도록 한다.
-            currentPage = totalPages;
+        //2. 파라미터 page 값  검증
+        if(currentPage > pageCount) {
+            currentPage = pageCount;
+            currentBlock = (int)Math.ceil((double)currentPage / PAGE_SIZE);
         }
-        if (currentPage < 1) { // 최소 1페이지 이상이 되도록 한다.
+
+        if(currentPage < 1) {
             currentPage = 1;
+            currentBlock = 1;
         }
 
-        // 시작 페이지와 끝 페이지 계산
-        // 현재 페이지를 기준으로 페이징 목록의 시작 페이지와 끝 페이지를 계산한다.
-        int startPage = ((currentPage - 1) / PAGE_SIZE) * PAGE_SIZE + 1;
-        int endPage = startPage + PAGE_SIZE - 1;
-        if (endPage > totalPages) {
-            endPage = totalPages;
-        }
+        //3. view에서 페이지 리스트를 렌더링 하기위한 데이터 값 계산
+        int beginPage = currentBlock == 0 ? 1 : (currentBlock - 1) * PAGE_SIZE + 1;
+        int prevPage = (currentBlock > 1 ) ? (currentBlock - 1) * PAGE_SIZE : 0;
+        int nextPage = (currentBlock < blockCount) ? currentBlock * PAGE_SIZE + 1 : 0;
+        int endPage = (nextPage > 0) ? (beginPage - 1) + LIST_SIZE : pageCount;
 
-        // 이전 페이지와 다음 페이지 계산
-        int prevPage = (startPage > 1) ? startPage - 1 : 0; // 시작 페이지가 1보다 크면 이전 페이지가 있다.
-        int nextPage = (endPage < totalPages) ? endPage + 1 : 0; // 끝 페이지가 전체 페이지 수보다 작으면 다음 페이지가 있다.
+        //4. 리스트 가져오기
+        List<BoardVo> list = boardRepository.findAllByPageAndKeword(keyword, currentPage, LIST_SIZE);
 
-        // 현재 페이지의 게시물 목록을 키워드를 사용하여 가져온다.
-        List<BoardVo> list = boardRepository.findAllByPageAndKeyword(keyword, currentPage, LIST_SIZE);
+        //5. 리스트 정보를 맵에 저장
+        Map<String, Object> map = new HashMap<String, Object>();
 
-        // 결과 맵 준비
-        Map<String, Object> map = new HashMap<>();
         map.put("list", list);
         map.put("totalCount", totalCount);
         map.put("listSize", LIST_SIZE);
         map.put("currentPage", currentPage);
-        map.put("beginPage", startPage);
+        map.put("beginPage", beginPage);
         map.put("endPage", endPage);
         map.put("prevPage", prevPage);
         map.put("nextPage", nextPage);
@@ -95,5 +94,4 @@ public class BoardService {
 
         return map;
     }
-
 }

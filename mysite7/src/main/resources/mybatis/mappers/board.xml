@@ -80,7 +80,7 @@
 		]]>
     </select>
 
-    <select id="findAllByPageAndKeyword" parameterType="map" resultType="boardvo">
+    <select id="findAllByPageAndKeword" parameterType="map" resultType="boardvo">
         <choose>
             <when test="keyword == null or keyword == ''">
                 <![CDATA[

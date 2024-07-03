@@ -1,13 +1,14 @@
 package com.poscodx.mysite.service;
 
-import com.poscodx.mysite.repository.GuestbookLogRepository;
-import com.poscodx.mysite.repository.GuestbookRepository;
-import com.poscodx.mysite.vo.GuestbookVo;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.poscodx.mysite.repository.GuestbookLogRepository;
+import com.poscodx.mysite.repository.GuestbookRepository;
+import com.poscodx.mysite.vo.GuestbookVo;
 
 @Service
 public class GuestbookService {
@@ -25,12 +26,12 @@ public class GuestbookService {
     @Transactional
     public void deleteContents(Long no, String password) {
         GuestbookVo vo = guestbookRepository.findByNo(no);
-        if (vo == null) {
+        if(vo == null) {
             return;
         }
 
         int count = guestbookRepository.deleteByNoAndPassword(no, password);
-        if (count == 1) {
+        if(count == 1) {
             guestbookLogRepository.update(vo.getRegDate());
         }
     }

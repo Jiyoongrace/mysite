@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class GuestbookLogRepository {
     private SqlSession sqlSession;
-    
+
     public GuestbookLogRepository(SqlSession sqlSession) {
         this.sqlSession = sqlSession;
     }

@@ -1,10 +1,11 @@
 package com.poscodx.mysite.service;
 
-import com.poscodx.mysite.repository.UserRepository;
-import com.poscodx.mysite.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.poscodx.mysite.repository.UserRepository;
+import com.poscodx.mysite.vo.UserVo;
 
 @Service
 public class UserService {
@@ -27,12 +28,12 @@ public class UserService {
         return userRepository.findByNo(no);
     }
 
+    public UserVo getUser(String email) {
+        return userRepository.findByEmail(email, UserVo.class);
+    }
+
     public void update(UserVo vo) {
         vo.setPassword(vo.getPassword().equals("") ? "" : passwordEncoder.encode(vo.getPassword()));
         userRepository.update(vo);
-    }
-
-    public UserVo getUser(String email) {
-        return userRepository.findByEmail(email, UserVo.class);
     }
 }

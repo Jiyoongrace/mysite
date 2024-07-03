@@ -1,21 +1,20 @@
 package com.poscodx.mysite.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Calendar;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
 @Service
 @PropertySource("classpath:config/fileupload.properties")
 public class FileUploadService {
-
     @Autowired
     private Environment env;
 
@@ -33,7 +32,7 @@ public class FileUploadService {
             }
 
             String originFilename = file.getOriginalFilename();
-            String extName = originFilename.substring(originFilename.lastIndexOf(".") + 1);
+            String extName = originFilename.substring(originFilename.lastIndexOf(".")+1);
             String saveFilename = generateSaveFilename(extName);
             Long fileSize = file.getSize();
 
@@ -47,10 +46,10 @@ public class FileUploadService {
             os.close();
 
             url = env.getProperty("fileupload.resourceUrl") + "/" + saveFilename;
-
         } catch(IOException ex) {
             throw new RuntimeException(ex);
         }
+
         return url;
     }
 
@@ -69,5 +68,4 @@ public class FileUploadService {
 
         return filename;
     }
-
 }

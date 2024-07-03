@@ -1,13 +1,14 @@
 package com.poscodx.mysite.repository;
 
-import com.poscodx.mysite.vo.BoardVo;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.poscodx.mysite.vo.BoardVo;
 
 @Repository
 public class BoardRepository {
@@ -19,13 +20,13 @@ public class BoardRepository {
         return sqlSession.insert("board.insert", boardVo);
     }
 
-    public List<BoardVo> findAllByPageAndKeyword(String keyword, Integer page, Integer size) {
-        Map<String, Object> map = new HashMap<>();
+    public List<BoardVo> findAllByPageAndKeword(String keyword, Integer page, Integer size) {
+        Map<String, Object> map = new HashMap<String, Object>();
         map.put("keyword", keyword);
         map.put("startIndex", (page - 1) * size);
         map.put("size", size);
 
-        return sqlSession.selectList("board.findAllByPageAndKeyword", map);
+        return sqlSession.selectList("board.findAllByPageAndKeword", map);
     }
 
     public int update(BoardVo boardVo) {
@@ -33,7 +34,7 @@ public class BoardRepository {
     }
 
     public int delete(Long no, Long userNo) {
-        Map<String, Long> map = new HashMap<>();
+        Map<String, Long> map = new HashMap<String, Long>();
         map.put("no", no);
         map.put("userNo", userNo);
 
@@ -45,7 +46,7 @@ public class BoardRepository {
     }
 
     public BoardVo findByNoAndUserNo(Long no, Long userNo) {
-        Map<String, Long> map = new HashMap<>();
+        Map<String, Long> map = new HashMap<String, Long>();
         map.put("no", no);
         map.put("userNo", userNo);
 
@@ -57,11 +58,11 @@ public class BoardRepository {
     }
 
     public int updateOrderNo(Integer groupNo, Integer orderNo) {
-        Map<String, Integer> map = new HashMap<>();
+        Map<String, Integer> map = new HashMap<String, Integer>();
         map.put("groupNo", groupNo);
         map.put("orderNo", orderNo);
 
-        return sqlSession.update("board.updateOrderNo", map);
+        return sqlSession.update("board.updateOrederNo", map);
     }
 
     public int getTotalCount(String keyword) {

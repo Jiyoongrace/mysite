@@ -20,12 +20,12 @@ import com.poscodx.mysite.vo.UserVo;
 public class UserController {
 	@Autowired
 	private UserService userService;
-	
+
 	@RequestMapping(value="/join", method=RequestMethod.GET)
 	public String join(@ModelAttribute UserVo vo) {
 		return "user/join";
 	}
-	
+
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public String join(@ModelAttribute @Valid UserVo vo, BindingResult result, Model model) {
 		if(result.hasErrors()) {
@@ -35,13 +35,13 @@ public class UserController {
 //			for(ObjectError error:list) {
 //				System.out.println(error);
 //			}
-			Map<String, Object> map = result.getModel();			
+			Map<String, Object> map = result.getModel();
 //			Set<String> s = map.keySet();
 //			for(String key : s) {
 //				model.addAttribute(key, map.get(key));
 //			}
 			model.addAllAttributes(map);
-			
+
 			return "user/join";
 		}
 
@@ -53,12 +53,12 @@ public class UserController {
 	public String joinsuccess() {
 		return "user/joinsuccess";
 	}
-	
+
 	@RequestMapping(value="/login")
 	public String login() {
 		return "user/login";
 	}
-	
+
 	@RequestMapping(value="/update", method=RequestMethod.GET)
 	public String update(Authentication authentication, Model model) {
 //      1. SecurityContextHolder(Spring Security ThreadLocal Helper Class) 기반		
@@ -72,17 +72,17 @@ public class UserController {
 		UserVo authUser = (UserVo)authentication.getPrincipal();
 		UserVo vo = userService.getUser(authUser.getNo());
 		model.addAttribute("userVo", vo);
-		
+
 		return "user/update";
 	}
-	
+
 	@RequestMapping(value="/update", method=RequestMethod.POST)
 	public String update(Authentication authentication, UserVo vo) {
 		UserVo authUser = (UserVo)authentication.getPrincipal();
 		vo.setNo(authUser.getNo());
-		
+
 		userService.update(vo);
-		
+
 		authUser.setName(vo.getName());
 		return "redirect:/user/update";
 	}

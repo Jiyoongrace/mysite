@@ -3,15 +3,16 @@
 
 <mapper namespace="site">
     <select id="find" resultType="sitevo">
-        <![CDATA[
-        select no, title, welcome, profile, description
+		<![CDATA[
+        select title, welcome, profile, description
         from site
         order by no asc
-        limit 0, 1;
+            limit 0, 1
         ]]>
-    </select>
+	</select>
+
     <update id="update" parameterType="sitevo">
-        <![CDATA[
+		<![CDATA[
         update site
         set title = #{title },
             welcome = #{welcome },
@@ -19,5 +20,5 @@
             description = #{description }
         where no = 1
         ]]>
-    </update>
+	</update>
 </mapper>

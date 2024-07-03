@@ -1,26 +1,20 @@
 package com.poscodx.mysite.controller;
 
-import com.poscodx.mysite.service.SiteService;
-import com.poscodx.mysite.vo.UserVo;
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
+import com.poscodx.mysite.vo.UserVo;
 
 @Controller
 public class MainController {
+
     @Autowired
     private ServletContext servletContext;
-
-    private SiteService siteService;
-
-    public MainController(SiteService siteService) {
-        this.siteService = siteService;
-    }
 
     @RequestMapping({"/", "/main"})
     public String index(Model model) {
@@ -31,18 +25,18 @@ public class MainController {
     @ResponseBody
     @RequestMapping("/msg01")
     public String message01() {
-        return "Hello World!";
+        return "Hello World";
     }
 
     @ResponseBody
     @RequestMapping("/msg02")
     public String message02(String name) {
-        return "안녕~" + name;
+        return "안녕~ " + name;
     }
 
     @ResponseBody
     @RequestMapping("/msg03")
-    public UserVo message03(String name) {
+    public Object message03() {
         UserVo vo = new UserVo();
         vo.setNo(1L);
         vo.setName("둘리");

@@ -1,11 +1,12 @@
 package com.poscodx.mysite.repository;
 
-import com.poscodx.mysite.vo.GuestbookVo;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Map;
+import com.poscodx.mysite.vo.GuestbookVo;
 
 @Repository
 public class GuestbookRepository {
@@ -16,9 +17,7 @@ public class GuestbookRepository {
     }
 
     public List<GuestbookVo> findAll() {
-
-        List<GuestbookVo> list = sqlSession.selectList("guestbook.findAll");
-        return list;
+        return sqlSession.selectList("guestbook.findAll");
     }
 
     public GuestbookVo findByNo(Long no) {
